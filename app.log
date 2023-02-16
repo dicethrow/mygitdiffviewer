@@ -1,0 +1,12 @@
+10:55:43 805 root INFO ---
+10:55:43 806 root INFO file1 is /home/x/Documents/git_repos/software/tools/mygitdiffviewer
+10:55:43 806 root INFO file2 is a
+10:56:01 765 root INFO ---
+10:56:01 765 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/1/[ec73860af7420c6c8cae7c832cf86eb98bdc1b14] v1.kicad_pcb
+10:56:01 765 root INFO file2 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/1/[464529e9212f704023e2eae55457fb9eadaed08a] v1.kicad_pcb
+10:56:10 575 root INFO ---
+10:56:10 575 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/2/[ec73860af7420c6c8cae7c832cf86eb98bdc1b14] v1.kicad_pcb
+10:56:10 575 root INFO file2 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/2/[464529e9212f704023e2eae55457fb9eadaed08a] v1.kicad_pcb
+10:56:51 503 root INFO ---
+10:56:51 503 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/3/[3b3d07fee13f4fd7141db379282c73d263ffc48e] v1.kicad_pcb
+10:56:51 503 root INFO file2 is /dev/null

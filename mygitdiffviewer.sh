@@ -16,22 +16,31 @@
 
 file1=$1
 file2=$2
+file3=$3
+file4=$4
 
-firefox --new-window $file1 $file2
+# get path of this file, which needs to resolve the ld link, from https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script
+DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
-MOST_KICAD_LAYERS=F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,B.Cu,B.Adhesive,F.Adhesive,B.Paste,F.Paste,B.Silkscreen,F.Silkscreen,B.Mask,F.Mask,User.Drawings,User.Comments,User.Eco1,User.Eco2,Edge.Cuts,Margin,B.Courtyard,F.Courtyard,B.Fab,F.Fab,User.1,User.2
+$DIR/pythontest.py $DIR "$file1" "$file2" # quotes as the filenames may have spaces? yuck!
 
-if [[ $file1 == *.kicad_pcb ]]; then
-	OUTPUTFORMAT=pdf
+# firefox --new-window $file1 $file2
 
-	echo $file1
+# # want this to be all layers but I'm too lazy to type them all out
+# MOST_KICAD_LAYERS=F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,B.Cu,B.Adhesive,F.Adhesive,B.Paste,F.Paste,B.Silkscreen,F.Silkscreen,B.Mask,F.Mask,User.Drawings,User.Comments,User.Eco1,User.Eco2,Edge.Cuts,Margin,B.Courtyard,F.Courtyard,B.Fab,F.Fab,User.1,User.2
 
-	kicad-cli pcb export $OUTPUTFORMAT --layers $MOST_KICAD_LAYERS $file1
-	kicad-cli pcb export $OUTPUTFORMAT --layers $MOST_KICAD_LAYERS $file2
+# if [[ $file1 == *.kicad_pcb ]]; then
+# 	OUTPUTFORMAT=pdf
 
-	firefox --new-window $file1.$OUTPUTFORMAT $file2.$OUTPUTFORMAT
+# 	echo $file1
 
-else
-	meld $file1 $file2
-fi
+# 	kicad-cli pcb export $OUTPUTFORMAT --layers $MOST_KICAD_LAYERS $file1
+# 	kicad-cli pcb export $OUTPUTFORMAT --layers $MOST_KICAD_LAYERS $file2
+
+# 	firefox --new-window $file1.$OUTPUTFORMAT $file2.$OUTPUTFORMAT
+
+# else
+# 	meld $file1 $file2
+# fi
+
 
