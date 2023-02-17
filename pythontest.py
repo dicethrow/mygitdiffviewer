@@ -6,6 +6,7 @@ from git import Repo
 def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("DIR", help="parent folder of this script")
+	parser.add_argument("GITDIR", help="the folder containing .git of this repository")
 	parser.add_argument("file1", help="path of the first kicad file to diff, from one git commit")
 	parser.add_argument("file2", help="path of the second kicad file to diff, from other git commit")
 	args = parser.parse_args()
@@ -20,7 +21,12 @@ def main():
 	logging.info(f"file1 is {args.file1}")
 	logging.info(f"file2 is {args.file2}")
 
-	def parse_gitk_filename(gitk_filename):
+	TEMPDIR = os.path.join(args.DIR, "tempdir")
+
+	def clearTempDir():
+		shutil.rmtree(TEMPDIR, ignore_errors=False, onerror=None)
+
+	def saveLocalCopyOfMatchedFiles(gitk_filename):
 		# as gitk gives weirdly structured `filenames`
 		# perhaps this is due to my use of git submodules?
 		# like this: 
@@ -30,51 +36,56 @@ def main():
 			logging.info("filename is null")
 			return None
 		else:
-			path_to_repo, remainder = gitk_filename.split("/.gitk-tmp")
-			remainder, git_sha, filename = remainder.replace("[", "] ").split("] ")
-
-			# test = path_to_repo + "/.gitk-tmp" + j# + filename
-			# shutil.copytree(test, os.path.join(args.DIR,"testdir2"))
-			# with open(test, "r") as f:
-				# logging.info(f.readlines())
-
-			remainder, filename = gitk_filename.split(" ")
+			remainder, sha, filename = gitk_filename.replace("[", "] ").split("] ")
 			logging.info(f"filename is: {filename}")
-			path_to_repo, path_within_repo, remainder = remainder.split("/.git")
-			path_within_repo = path_within_repo[1:] # remove leading slash
-			path_within_repo = os.path.join(path_within_repo, filename)
-
-			logging.info(f"path_to_repo is: {path_to_repo}")
-			logging.info(f"path_within_repo is: {path_within_repo}")
-			
-			_, sha, _ = remainder.replace("]","[").split("[")
 			logging.info(f"sha is: {sha}")
 
+		
+			# path_to_repo = os.getcwd()
+			filePathsToView = []
+			commit = Repo(args.GITDIR).commit(sha)
+			logging.info(f"commit items: {commit.stats.files}")
+			for key,value in commit.stats.files.items():
+				if filename in key:
+					key = key.split(" => ")[-1] # handle matches of renames, like: v1.kicad_pcb => main.kicad_pcb so we just get the resultant filename
 
+					logging.info(f"The relative path of {filename} within this repo is assumed to be {key}! nice - now deal with it. note this approach may make duplicate matches")
+					filePathsToView.append(key)
+			
+			dest_filenames = []
+			for filenameMatch in filePathsToView: # should just be one... todo: work out how to ensure we always get the one true match only
 
+				targetfile = commit.tree / filenameMatch # what the hell is this / syntax
 
-			path_to_repo = os.getcwd()
-			originalRepo = Repo(path_to_repo)
-			commit = originalRepo.commit(sha)
-			# for d in dir(commit):
-				# logging.info(d)
-			for k,v in commit.stats.files.items():
-				if filename in k:
-					logging.info(f"The full path of {filename} is assumed to be {k}! nice - now deal with it")
-					filename = k
+				with io.BytesIO(targetfile.data_stream.read()) as source_f:
+					dest_filename = f"{sha[:5]}_{filenameMatch}" # use first 5 sha characters...? is that enough characters? is this the right approach?
+					full_dest_filename = os.path.join(TEMPDIR, dest_filename) # note that dest_filename may include subdirectories
+					os.makedirs(os.path.dirname(full_dest_filename), exist_ok=True)
+					
+					with open(full_dest_filename, "wb") as dest_f: 
+						# logging.info(source_f.read().decode('utf-8'))
+						dest_f.write(source_f.read())
+					
+					dest_filenames.append(full_dest_filename)
 
-			targetfile = commit.tree / filename#'filea'
-
-			# Retrieve contents of targetfile
-
-			with io.BytesIO(targetfile.data_stream.read()) as f:
-				logging.info(f.read().decode('utf-8'))
-
-			return path_to_repo, path_within_repo, sha
+			return dest_filenames
 		
 
-	path_to_repo, path_within_repo_1, sha_1 = parse_gitk_filename(args.file1)
-	path_to_repo, path_within_repo_1, sha_2 = parse_gitk_filename(args.file2)
+	clearTempDir()
+
+	dest_filenames = []
+
+	result = saveLocalCopyOfMatchedFiles(args.file1)
+	if result:
+		dest_filenames += result
+
+	result = saveLocalCopyOfMatchedFiles(args.file2)
+	if result:
+		dest_filenames += result
+
+	for filename in dest_filenames:
+		logging.info(f"saved filename: {filename}")
+
 
 	# temp_repo_dir = os.path.join(args.DIR, "temprepo")
 	# path_to_repo = os.getcwd()
