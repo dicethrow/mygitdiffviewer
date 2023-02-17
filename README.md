@@ -31,3 +31,15 @@ You can check this with
 ``` bash
 ls -al ~/.local/bin | grep mygitdiffviewer
 ```
+
+# Notes
+
+this command saved that file at that sha to a file
+```
+git --no-pager --git-dir /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640 show 3b3d07fee13f4fd7141db379282c73d263ffc48e:v1.kicad_pcb > v1
+```
+
+this prints the commit
+```
+git --no-pager --git-dir /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640 show 09abd80919a10a42b1eb6be66258197e8cc298c6
+```

@@ -24,6 +24,8 @@ DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 $DIR/pythontest.py $DIR "$file1" "$file2" # quotes as the filenames may have spaces? yuck!
 
+$(git --no-pager --git-dir /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640 show 09abd80919a10a42b1eb6be66258197e8cc298c6:.gitk-tmp.J8HpNo/1/filea) >> fileb
+
 # firefox --new-window $file1 $file2
 
 # # want this to be all layers but I'm too lazy to type them all out

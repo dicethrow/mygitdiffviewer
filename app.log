@@ -1,12 +1,23 @@
-10:55:43 805 root INFO ---
-10:55:43 806 root INFO file1 is /home/x/Documents/git_repos/software/tools/mygitdiffviewer
-10:55:43 806 root INFO file2 is a
-10:56:01 765 root INFO ---
-10:56:01 765 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/1/[ec73860af7420c6c8cae7c832cf86eb98bdc1b14] v1.kicad_pcb
-10:56:01 765 root INFO file2 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/1/[464529e9212f704023e2eae55457fb9eadaed08a] v1.kicad_pcb
-10:56:10 575 root INFO ---
-10:56:10 575 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/2/[ec73860af7420c6c8cae7c832cf86eb98bdc1b14] v1.kicad_pcb
-10:56:10 575 root INFO file2 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/2/[464529e9212f704023e2eae55457fb9eadaed08a] v1.kicad_pcb
-10:56:51 503 root INFO ---
-10:56:51 503 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.ZPDRq6/3/[3b3d07fee13f4fd7141db379282c73d263ffc48e] v1.kicad_pcb
-10:56:51 503 root INFO file2 is /dev/null
+12:23:45 656 root INFO 
+---
+12:23:45 656 root INFO file1 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.pDFQ0j/19/[09abd80919a10a42b1eb6be66258197e8cc298c6] filea
+12:23:45 657 root INFO file2 is /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640/.gitk-tmp.pDFQ0j/19/[456043a168c5152510cfd106cb3ab126e2ee588a] filea
+12:23:45 657 root INFO filename is: filea
+12:23:45 657 root INFO path_to_repo is: /home/x/Documents/git_repos/general/general_electronics
+12:23:45 657 root INFO path_within_repo is: modules/modules/2022/M-CAM-OV5640/filea
+12:23:45 657 root INFO sha is: 09abd80919a10a42b1eb6be66258197e8cc298c6
+12:23:45 658 git.cmd DEBUG Popen(['git', 'cat-file', '--batch-check'], cwd=/home/x/Documents/git_repos/general/general_electronics/modules/2022/M-CAM-OV5640, universal_newlines=False, shell=None, istream=<valid stream>)
+12:23:45 662 git.cmd DEBUG Popen(['git', 'cat-file', '--batch'], cwd=/home/x/Documents/git_repos/general/general_electronics/modules/2022/M-CAM-OV5640, universal_newlines=False, shell=None, istream=<valid stream>)
+12:23:45 665 git.cmd DEBUG Popen(['git', 'diff', '--numstat', '3848062f6627a7f8f99787ed66fbc570ee3f9915', '09abd80919a10a42b1eb6be66258197e8cc298c6', '--'], cwd=/home/x/Documents/git_repos/general/general_electronics/modules/2022/M-CAM-OV5640, universal_newlines=False, shell=None, istream=None)
+12:23:45 669 root INFO The full path of filea is assumed to be testdir/filea! nice - now deal with it
+12:23:45 670 root INFO 
+12:23:45 670 root INFO filename is: filea
+12:23:45 670 root INFO path_to_repo is: /home/x/Documents/git_repos/general/general_electronics
+12:23:45 670 root INFO path_within_repo is: modules/modules/2022/M-CAM-OV5640/filea
+12:23:45 670 root INFO sha is: 456043a168c5152510cfd106cb3ab126e2ee588a
+12:23:45 672 git.cmd DEBUG Popen(['git', 'cat-file', '--batch-check'], cwd=/home/x/Documents/git_repos/general/general_electronics/modules/2022/M-CAM-OV5640, universal_newlines=False, shell=None, istream=<valid stream>)
+12:23:45 675 git.cmd DEBUG Popen(['git', 'cat-file', '--batch'], cwd=/home/x/Documents/git_repos/general/general_electronics/modules/2022/M-CAM-OV5640, universal_newlines=False, shell=None, istream=<valid stream>)
+12:23:45 678 git.cmd DEBUG Popen(['git', 'diff', '--numstat', '09abd80919a10a42b1eb6be66258197e8cc298c6', '456043a168c5152510cfd106cb3ab126e2ee588a', '--'], cwd=/home/x/Documents/git_repos/general/general_electronics/modules/2022/M-CAM-OV5640, universal_newlines=False, shell=None, istream=None)
+12:23:45 682 root INFO The full path of filea is assumed to be testdir/filea! nice - now deal with it
+12:23:45 683 root INFO hello
+
