@@ -20,6 +20,18 @@ sudo chmod +x mygitdiffviewer.sh
 sudo chmod +x pythontest.py
 ```
 
+Install this
+```
+pip3 install pdfCropMargins --upgrade
+wget https://github.com/tavinus/pdfScale/raw/master/pdfScale.sh
+```
+
+And this
+```
+git clone git@github.com:easyw/k-eediff.git
+```
+
+
 Do this once, so the executable will link to the script in the other file
 
 ``` bash
@@ -43,3 +55,6 @@ this prints the commit
 ```
 git --no-pager --git-dir /home/x/Documents/git_repos/general/general_electronics/.git/modules/modules/2022/M-CAM-OV5640 show 09abd80919a10a42b1eb6be66258197e8cc298c6
 ```
+
+also using https://superuser.com/questions/1487564/is-there-a-linux-tool-that-can-autocrop-the-white-margins-in-a-pdf-file
+
